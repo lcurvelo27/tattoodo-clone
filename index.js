@@ -35,8 +35,32 @@ massive(process.env.CONNECTION_STRING)
 		app.set('db', db)
 	})
 
+passport.use(new Auth0Strategy({
+	domain: process.env.AUTH_DOMAIN,
+	clientSecret: process.env.AUT_CLIENT_SECRET,
+	clientID: process.env.AUTH_CLIENT_ID,
+	callbackURL: process.env.AUTH_CALLBACK 
+},
 
+	function(accessToken, refreshToken, extraParams, profile, done){
+		const db = app.get('db')
 
+		db.find_user([profile.identities[0].user_id])
+			.then( user => {
+				if(user[0]){
+					console.log(user[0])
+					return done(null, {id: user[0].id})
+				}
+				else {
+					db.create_user([profile.identities[0].user_id, profile.emails[0]])
+						.then( user => {
+							console.log(user)
+							return done(null,  {id: user[0].id})
+						})
+				}
+			})
+	}
+	))
 
 app.listen(port, ()=>{
 	console.log(`server listening on port ${port}`)
