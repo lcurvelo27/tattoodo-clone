@@ -12,6 +12,7 @@ var port = 3000;
 //* Allowing access to req.body *//
 app.use(bodyParser.json());
 
+
 //* setting up session*//
 app.use(session({
 	secret: process.env.SECRET,
@@ -21,7 +22,7 @@ app.use(session({
 
 //* Cross origin permit *//
 app.use(cors({
-	origin: 'http://localhost:3001',
+	origin: 'http://localhost:3000',
 	credentials: true
 }));
 
@@ -61,6 +62,39 @@ passport.use(new Auth0Strategy({
 			})
 	}
 	))
+
+//* setting authentication endpoint URL *//
+app.get('/auth', passport.authenticate('auth0'));
+
+app.get('/auth/callback', passport.authenticate('auth0', {
+	successRedirect: 'http://localhost:3001/#/dashboard',
+	failureRedirect: 'http://localhost:3001'
+}));
+
+passport.serializeUser(function(user, done){
+	done(null, {id: user.id})
+})
+
+passport.deserializeUser(function(user, done){
+	app.get('db').find_session_user([user.id])
+		.then(user => {
+			return done(null, user[0])
+		})
+})
+
+app.get('/logout', (req, res) => {
+	req.logout()
+	return res.redirect('https://curvelo-app.auth0.com/v2/logout?returnTo=http%3A%2F%2Flocalhost:3001/#/')
+})
+
+app.get('/images', (req, res) => {
+	app.get('db').get_images()
+		.then(response => {
+			console.log(response)
+			return res.status(200).json(response)
+		})
+})
+
 
 app.listen(port, ()=>{
 	console.log(`server listening on port ${port}`)
