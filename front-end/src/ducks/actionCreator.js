@@ -6,9 +6,13 @@ const action = {
 		return {
 			type: GET_IMAGES,
 			payload: axios.get('http://localhost:3000/images')
-				.then(res => {
-					console.log(res.data)
-				})
+				.then(res => res.data)
+		}
+	},
+	test: () => {
+		return {
+			type: 'TEST',
+			payload: 'this is a test'
 		}
 	}
 } 

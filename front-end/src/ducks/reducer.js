@@ -1,4 +1,4 @@
-import {GET_PEOPLE_PENDING, GET_PEOPLE, GET_PEOPLE_FULFILLED} from './actionType'
+import {GET_IMAGES_PENDING, GET_IMAGES, GET_IMAGES_FULFILLED} from './actionType'
 import action from './actionCreator'
 
 const initialState = {
@@ -8,12 +8,12 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
 	switch(action.type){
-		case GET_PEOPLE_PENDING: 
+		case GET_IMAGES_PENDING: 
 			return Object.assign({}, state, {loading: true})
 
-		case GET_PEOPLE_FULFILLED: 
+		case GET_IMAGES_FULFILLED: 
 			return Object.assign({}, state, {loading: false, images: action.payload})
-
+		
 		default: 
 			return state
 	}

@@ -8,14 +8,18 @@ class Dashboard extends Component {
 	
 	componentDidMount() {
 		this.props.getImages();
-		console.log(this.props.images)
 	}
 
 
   render() {
+  	const images = this.props.images.map((image, i)=>{
+		return(
+				<img key={i} src={image.url} alt="image"/>
+			)
+  	})
     return (
       <div className="App">
-        this is the dashboard 
+        {images}
         <a href='http://localhost:3000/logout'><button>logout</button></a>
       </div>
     );
@@ -25,7 +29,7 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
 	return {
 		loading: state.loading,
-		images: state.images 
+		images: state.images
 	}
 }
 
