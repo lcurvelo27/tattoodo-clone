@@ -1,0 +1,25 @@
+.header-wrapper {
+	display: flex;
+	justify-content: space-between;
+	padding: 20px;
+	box-sizing: border-box;	
+	background-color: black;
+	color: #f2f2f2;
+	font-family: 'Passion One', 'Arial';
+	letter-spacing: 7px;
+}
+
+.nav-bar-options{
+	display: flex;
+	text-decoration: none;
+	list-style: none;
+}
+
+.nav-bar-list{
+	margin-right: 15px;
+	letter-spacing: 5px;
+}
+
+#user-logo {
+	height: 25px;
+}

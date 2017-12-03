@@ -1,6 +1,3 @@
-body{
-	background-color: black;
-}
 .login-container{
 	display: flex;
 	flex-direction: column;
@@ -12,6 +9,7 @@ body{
 	font-size: 60px;
 	letter-spacing: 10px;
 	color: #f2f2f2;
+	background-color: black;
 }
 
 #login-button {
@@ -32,8 +30,8 @@ body{
 }
 
 @keyframes buttonAnimationRight {
-	from { transform: scale(6);}
-	to { transform: scale(5); }
+	from { transform: scale(0);}
+	to { transform: scale(1); }
 }
 
 

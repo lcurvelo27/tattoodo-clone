@@ -1,0 +1,26 @@
+.images-carousel {
+	display: flex; 
+	justify-content: center;
+	align-items: center;
+	width: 80%;
+	overflow: scroll;
+}
+
+.container{
+	height: 100vh;
+	border: 1px solid blue;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+img{
+	height: 300px;
+}
+
+.dashboard-text {
+	font-family: 'Amatic SC', 'Arial';
+	font-size: 100px;
+	margin-top: -40px;
+}
