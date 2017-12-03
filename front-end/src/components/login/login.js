@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import '../../App.css';
+import './login.css';
 
 class Login extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="login-container">
+      	<h1>Get Blasted</h1>
         <a href='http://localhost:3000/auth'><button>Login/Register</button></a>
       </div>
     );

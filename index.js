@@ -86,12 +86,20 @@ app.get('/logout', (req, res) => {
 
 app.get('/images', (req, res) => {
 	app.get('db').get_images()
-		.then(response => {
-			console.log(response)
+		.then(response => {			
 			return res.status(200).json(response)
 		})
 })
 
+app.get('/tattoo/:id', (req, res) => {
+
+	app.get('db').get_tattoo(req.params.id)
+		.then(response => {
+			console.log( 'THIS IS COMING FROM THE DATABASE',response)
+			return res.status(200).send(response)
+		})
+		.catch(error => res.status(400).send(error))
+})
 
 app.listen(port, ()=>{
 	console.log(`server listening on port ${port}`)

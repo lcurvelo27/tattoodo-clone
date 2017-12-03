@@ -1,5 +1,19 @@
 .App {
+  margin-top: 80px;
   text-align: center;
+  display: flex;
+  overflow: scroll;
+  height: 400px;
+  width: 80%;
+}
+
+.container{
+  width: 100%;
+}
+
+img{
+  height: 300px;
+  width: 300px;
 }
 
 .App-logo {
