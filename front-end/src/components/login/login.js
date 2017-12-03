@@ -5,9 +5,9 @@ import './login.css';
 class Login extends Component {
   render() {
     return (
-      <div className="container">
-      	<h1>Get Blasted</h1>
-        <a href='http://localhost:3000/auth'><button>Login/Register</button></a>
+      <div className="login-container">
+      	<h1>Get Blasted!</h1>
+        <a href='http://localhost:3000/auth'><button id='login-button'>Login/Register</button></a>
       </div>
     );
   }
