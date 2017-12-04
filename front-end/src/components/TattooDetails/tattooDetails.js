@@ -17,6 +17,7 @@ class TattooDetails extends Component {
   render() {
   	const {tattooDetails} = this.props
   	const tattoo = tattooDetails.map((tattoo,i) => {
+      console.log('TEST', tattoo)
   		return (
   			<img key={i} src={tattoo.url} alt=""/>
   			) 
@@ -24,7 +25,7 @@ class TattooDetails extends Component {
     return (
     	<div className='container'>
     		{tattoo}
-    		<Link to ='/dashboard'><button onClick={()=> this.props.goBack()}>GO BACK</button></Link>
+    		<Link to ='/dashboard'><button>GO BACK</button></Link>
 	     </div>
     		
     );
