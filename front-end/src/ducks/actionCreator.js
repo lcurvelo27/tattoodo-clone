@@ -1,4 +1,4 @@
-import { GET_IMAGES, GET_TATTOO, PICK_TATTOO, GO_BACK } from './actionType';
+import { GET_WISHLIST, GET_SESSION, GET_IMAGES, GET_TATTOO, PICK_TATTOO, GO_BACK } from './actionType';
 import axios from 'axios'
 
 const action = {
@@ -28,6 +28,18 @@ const action = {
 		return {
 			type: GO_BACK,
 			payload: ''	
+		}
+	},
+	getSession: (session) => {
+		return {
+			type: GET_SESSION,
+			payload: session
+		}
+	},
+	getWishlist: () => {
+		return {
+			type: GET_WISHLIST,
+			payload: axios.get('http://localhost:3000/wishlist', {withCredentials: true}).then(response => response.data)
 		}
 	}
 } 

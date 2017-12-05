@@ -97,18 +97,26 @@ app.get('/tattoo/:id', (req, res) => {
 
 	app.get('db').get_tattoo(req.params.id)
 		.then(response => {
-			console.log( 'THIS IS COMING FROM THE DATABASE',response)
 			return res.status(200).send(response)
 		})
 		.catch(error => res.status(400).send(error))
 })
 
-app.get('/wishlist', (req, res, next) => {
+app.get('/auth/me', (req, res, next) => {
 	if(!req.user) {
 		return res.status(401).send('log in required')
 	} else {
 		return res.status(200).send(req.user)
 	}
+})
+
+app.post('/addToWishlist', (req, res, next) => {
+	const {imageId, userId} = req.body
+	app.get('db').addToWishlist(imageId, userId).then(response => res.status(200).send(response))
+})
+
+app.get('/wishlist', (req, res, next) => {
+	app.get('db').get_wishlist(req.user.id).then(response => res.status(200).send(response))
 })
 
 app.listen(port, ()=>{
