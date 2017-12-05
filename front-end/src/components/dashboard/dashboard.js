@@ -5,16 +5,21 @@ import './dashboard.css';
 import LeftArrow from '../../assets/left-arrow.svg'
 import {Link} from 'react-router-dom';
 import Header from '../header/header'
+import axios from 'axios'
 const { getImages, pickTattoo } = action
 
 class Dashboard extends Component {
 	
 	componentDidMount() {
 		this.props.getImages();
+		axios.get('http://localhost:3000/wishlist', {withCredentials: true})
+			.then(response => {
+				console.log(response)
+			})
 	}
 
 
-  render() {
+  render() {  	
   	const images = this.props.images.map((image, i)=>{
 		return(
 				<Link to={`/tattoo/`+ image.id }><img key={i} src={image.url} alt="image" onClick={()=> this.props.pickTattoo(image.id)}/></Link>

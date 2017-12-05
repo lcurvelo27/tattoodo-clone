@@ -1,0 +1,19 @@
+.center-details {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 40%;
+}
+
+.tattoo-description {
+	width: 40%;
+	font-size: 20px;
+}
+
+.center-details{
+	border: 1px solid #09C8C8;
+	height: 600px;
+	width: 800px;
+	padding: 100px;
+	box-sizing: border-box;
+}

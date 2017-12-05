@@ -1,2 +1,2 @@
-SELECT url FROM images 
+SELECT * FROM images 
 WHERE id = $1

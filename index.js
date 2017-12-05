@@ -21,7 +21,7 @@ app.use(session({
 }));
 
 //* Cross origin permit *//
-app.use(cors());
+app.use(cors({origin: 'http://localhost:3001', credentials: true}));
 
 //*Setting up passport session*//
 app.use(passport.initialize());
@@ -33,6 +33,8 @@ massive(process.env.CONNECTION_STRING)
 		app.set('db', db)
 	})
 
+
+//* setting up passport strategy *//
 passport.use(new Auth0Strategy({
 	domain: process.env.AUTH_DOMAIN,
 	clientSecret: process.env.AUT_CLIENT_SECRET,
@@ -99,6 +101,14 @@ app.get('/tattoo/:id', (req, res) => {
 			return res.status(200).send(response)
 		})
 		.catch(error => res.status(400).send(error))
+})
+
+app.get('/wishlist', (req, res, next) => {
+	if(!req.user) {
+		return res.status(401).send('log in required')
+	} else {
+		return res.status(200).send(req.user)
+	}
 })
 
 app.listen(port, ()=>{

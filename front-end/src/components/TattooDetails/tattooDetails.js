@@ -19,7 +19,14 @@ class TattooDetails extends Component {
   	const tattoo = tattooDetails.map((tattoo,i) => {
       console.log('TEST', tattoo)
   		return (
-  			<img key={i} src={tattoo.url} alt=""/>
+        <div className='center-details'>
+          <div>
+    			   <img key={i} src={tattoo.url} alt=""/>           
+          </div>
+          <div className='tattoo-description'>
+            <p className='tattoo-description-entry'>{tattoo.description}</p>
+          </div>
+        </div>
   			) 
   	})
     return (
